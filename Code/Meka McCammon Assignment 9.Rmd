@@ -21,21 +21,25 @@ abuse <- read.csv(here("Data","Sexual Abuse Data.csv"))
 ```{r echo=FALSE}
 ggplot(abuse, aes(x = csa, y = ptsd))+
   geom_boxplot()+
-    labs(title = "Comparison of PTSD scores for Abused and Nonabused Women")
+    labs(x = "Childhood Sexual Abuse Status",
+         y = "PTSD Score",
+        title = "Comparison of PTSD scores for Abused and Nonabused Women")
 ```
 
 #### 2. Create a graph to compare the childhood physical abuse scores of women who suffered childhood sexual abuse to those who did not suffer childhood sexual abuse
 ```{r echo=FALSE}
 ggplot(abuse, aes(x = csa, y = cpa))+
   geom_boxplot()+
-  labs(title = "Comparison of CPA scores for Abused and Nonabused Women")
+  labs(x = "Childhood Sexual Abuse Status",
+       y = "Childhood Physical Abuse Score",
+       title = "Comparison of CPA scores for Abused and Nonabused Women")
 ```
 
 #### 3. Create a scatterplot that relates PTSD scores (the response variable) to childhood physical abuse scores (the explanatory variable). Use different types of points and colors to differentiate between the women who sufferred childhood sexual abuse and those who did not suffer childhood sexual abuse. Put two linear regression lines on your plot to relate PTSD to childhood physical abuse separately for those who sufferred childhood sexual abuse and those who did not. Use the same color as the related points for the regerssion lines to make it obvious which poitns relate to which group 
 ```{r echo=FALSE}
 ggplot(abuse, aes(x = cpa, y = ptsd, shape= csa, color = csa))+
   geom_point()+
-  geom_smooth(method = "lm", se = FALSE)+
+  stat_smooth(method = "lm", se = FALSE)+
   labs(x = "Childhood Physical Abuse Score",
        y = "PTSD Score",
        title = "Relationship between PTSD and CPA scores for Abused and Nonabused Women")
